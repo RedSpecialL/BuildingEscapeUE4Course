@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "OpenDoor.h"
-
+#include "Engine/TriggerVolume.h"
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
@@ -20,6 +20,11 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+	//OpenDoor();
+}
+
+void UOpenDoor::OpenDoor()
+{
 	// Find the owning Actor.
 	AActor* Owner = GetOwner();
 
@@ -30,12 +35,16 @@ void UOpenDoor::BeginPlay()
 	Owner->SetActorRotation(NewRotation);
 }
 
-
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+	// Poll the Trigger Volume
+	// If the ActorThatOpens is in the volume
+	if (PressurePlate->IsOverlappingActor(ActorThatOpens))
+	{
+		OpenDoor();
+	}
 }
-
