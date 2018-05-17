@@ -5,13 +5,14 @@
 
 // Sets default values for this component's properties
 UOpenDoor::UOpenDoor()
+	: LastDoorOpenTime(0)
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
 	// ...
-	AActor* Owner = GetOwner();
+	Owner = GetOwner();
 }
 
 
@@ -27,7 +28,7 @@ void UOpenDoor::BeginPlay()
 void UOpenDoor::CloseDoor()
 {
 	// Set the door rotation.
-	Owner->SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
+	Owner->SetActorRotation(FRotator(0.0f, CloseAngle, 0.0f));
 }
 
 void UOpenDoor::OpenDoor()

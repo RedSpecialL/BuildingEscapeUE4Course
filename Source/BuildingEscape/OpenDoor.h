@@ -30,15 +30,20 @@ public:
 
 private:
 	//
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(VisibleAnywhere)
 	float OpenAngle = -150.0f;
+
+	//
+	UPROPERTY(VisibleAnywhere)
+	float CloseAngle = -90.0f;
+
 	//
 	UPROPERTY(EditAnywhere)
 	class ATriggerVolume* PressurePlate;
 
 	//
 	UPROPERTY(EditAnywhere)
-	float DoorCloseDelay = 1.0f;
+	float DoorCloseDelay = 0.85f;
 
 	float LastDoorOpenTime;
 
