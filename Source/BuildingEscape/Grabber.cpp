@@ -4,7 +4,7 @@
 #include "DrawDebugHelpers.h"
 #include "CollisionQueryParams.h"
 #include "WeakObjectPtr.h"
-
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 
 #define OUT
 
@@ -24,9 +24,20 @@ UGrabber::UGrabber()
 void UGrabber::BeginPlay()
 {
 	Super::BeginPlay();
+	UE_LOG(LogTemp, Warning, TEXT("Grabber reporting for duty!"));
 
-	// ...
-	
+	/// Look for attached Physics Handle
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+
+	if (PhysicsHandle)
+	{
+
+	}
+	else
+	{
+		const FString OwnerName = GetOwner()->GetName();
+		UE_LOG(LogTemp, Error, TEXT("Cannot find physics handle componentof the %s"), *OwnerName);
+	}
 }
 
 

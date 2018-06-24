@@ -12,7 +12,7 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UGrabber();
 
@@ -20,11 +20,13 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-	// How far ahead of the player can we reach in cantimeters.
+private:
+	// How far ahead of the player can we reach in centimeters.
 	float ReachCm = 100.0f;
 	
+	class UPhysicsHandleComponent* PhysicsHandle = nullptr;
 };
