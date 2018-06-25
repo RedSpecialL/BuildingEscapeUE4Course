@@ -15,18 +15,32 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 public:
 	// Sets default values for this component's properties
 	UGrabber();
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+private:
+	// Finds (assumed) attached physics handle component.
+	void FindPhysicsHandleComponent();
+	// Return hit for first physics body in reach.
+	const FHitResult GetFirstPhysicsBodyInReach() const;
+	// Ray-cast and grab what's it reach.
+	void Grab();
+	// Called when grab is released.
+	void GrabReleased();
+	// Setup (assumed) attached input component.
+	void SetupInputComponent();
+
+
 
 private:
+	UInputComponent* InputComponent = nullptr;
+
+	class UPhysicsHandleComponent* PhysicsHandle = nullptr;
+
 	// How far ahead of the player can we reach in centimeters.
 	float ReachCm = 100.0f;
-	
-	class UPhysicsHandleComponent* PhysicsHandle = nullptr;
 };
