@@ -27,6 +27,8 @@ private:
 	void FindPhysicsHandleComponent();
 	// Return hit for first physics body in reach.
 	const FHitResult GetFirstPhysicsBodyInReach() const;
+	// Calculates the start and the end of the line in which grabber can grab things.
+	FTwoVectors GetReachLineEnds() const;
 	// Ray-cast and grab what's it reach.
 	void Grab();
 	// Called when grab is released.
