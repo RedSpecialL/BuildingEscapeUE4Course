@@ -29,10 +29,10 @@ void UGrabber::FindPhysicsHandleComponent()
 {
 	/// Look for attached Physics Handle
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-
 	if (PhysicsHandle == nullptr)
 	{
-		UE_LOG(LogTemp, Error, TEXT("Cannot find physics handle component of the %s"), *GetOwner()->GetName());
+		UE_LOG(LogTemp, Error,
+			TEXT("Cannot find physics handle component of the %s"), *GetOwner()->GetName());
 	}
 }
 
@@ -71,6 +71,11 @@ FTwoVectors UGrabber::GetReachLineEnds() const
 
 void UGrabber::Grab()
 {
+	if (PhysicsHandle == nullptr)
+	{
+		return;
+	}
+
 	const FHitResult FoundBody{ GetFirstPhysicsBodyInReach() };
 	UPrimitiveComponent* ComponentToGrab = FoundBody.GetComponent();
 	const AActor* Actor = FoundBody.GetActor();
@@ -114,6 +119,10 @@ void UGrabber::TickComponent(
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	if (PhysicsHandle == nullptr)
+	{
+		return;
+	}
 	/// If the physics handle is attached
 	if (PhysicsHandle->GrabbedComponent != nullptr)
 	{

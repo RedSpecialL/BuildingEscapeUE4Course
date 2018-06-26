@@ -32,24 +32,20 @@ private:
 	float GetTotalMassOfActorsOnPlate() const;
 
 private:
-	//
+	// Angle in which door is opened.
 	UPROPERTY(VisibleAnywhere)
 	float OpenAngle = -165.0f;
-
-	//
+	// Angle in which door is closed.
 	UPROPERTY(VisibleAnywhere)
 	float CloseAngle = -90.0f;
-
-	//
+	// Trigger Volume that triggers door opening.
 	UPROPERTY(EditAnywhere)
-	class ATriggerVolume* PressurePlate;
-
-	//
+	class ATriggerVolume* PressurePlate = nullptr;
+	// Delay with which door will be closed.
 	UPROPERTY(EditAnywhere)
 	float DoorCloseDelay = 0.85f;
-
+	// Latest opening time.
 	float LastDoorOpenTime;
-
 	// The owning door.
-	AActor* Owner;
+	AActor* Owner = nullptr;
 };
