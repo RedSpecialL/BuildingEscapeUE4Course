@@ -14,6 +14,7 @@ Saved/
 */Intermediate/
 */Saved/
 Content/StarterContent/
+Content/InfinityBladeWeapons/
 
 ######################
 # VS Generated Files #
@@ -21,4 +22,5 @@ Content/StarterContent/
 
 *.VC.db*
 .vs/
-Content/InfinityBladeWeapons/
+*.sln
+
