@@ -6,20 +6,17 @@
 #include "Components/ActorComponent.h"
 #include "OpenDoor.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnOpenDoorRequest);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class BUILDINGESCAPE_API UOpenDoor : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:	
+public:
 	// Sets default values for this component's properties
 	UOpenDoor();
-
-protected:
-	// Called when the game starts
-	virtual void BeginPlay() override;
-
+	
 public:
 	// Closes the door.
 	void CloseDoor();
@@ -28,7 +25,16 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
+public:
+	UPROPERTY(BlueprintAssignable)
+	FOnOpenDoorRequest OnOpenRequest;
+
+protected:
+	// Called when the game starts
+	virtual void BeginPlay() override;
+
 private:
+	// Returns total mass of actors on the pressure plate.
 	float GetTotalMassOfActorsOnPlate() const;
 
 private:
