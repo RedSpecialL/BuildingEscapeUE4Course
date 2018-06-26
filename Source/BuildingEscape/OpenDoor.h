@@ -34,7 +34,7 @@ private:
 private:
 	//
 	UPROPERTY(VisibleAnywhere)
-	float OpenAngle = -150.0f;
+	float OpenAngle = -165.0f;
 
 	//
 	UPROPERTY(VisibleAnywhere)
